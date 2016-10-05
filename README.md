@@ -84,12 +84,15 @@ En la configuración anterior, la aplicación de SpringBoot cumple el papel de '
 
 Normalmente, las aplicaciones integran Brokers de eventos y APIs REST. Suponga que se quiere permitir colaborar con los dibujos desde otro tipo de dispositivos que no soportan WebSockets. Para esto, haga un API REST con un recurso '/puntos', que únicamente maneje el verbo 'POST'. Haga que al recibir estas peticiones, el API publique el punto recibido en /app/points.
 
-De nuevo, abra varios clientes, y verifique que mediante el comando curl (desde una terminal) sea posible agregar puntos.
+De nuevo, abra varios clientes, y verifique que mediante el comando curl (desde una terminal) sea posible agregar puntos (Nota: para esto, puede inyectar el _SimpMessagingTemplate_ al controlador del API).
 
-```bash	
-git tag -a v0.2 -m "Parte2"	
-```
 
 ## Parte V.
 
 Con la configuración actual, con tan solo abrir la aplicación, se realiza la conexión al Broker y la suscripción a los tópicos. Haga los ajustes necesarios para que la conexión no sea implícita, y que la misma se realice a través de un botón. Igualmente, agregue un botón de 'desconectar'.
+
+Haga commit de lo realizado, y agregue un TAG para demarcar la versión final:
+
+```bash	
+git tag -a v0.3 -m "Final"	
+```
