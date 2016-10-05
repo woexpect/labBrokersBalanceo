@@ -6,7 +6,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         
-        stompClient.subscribe('/topic/newpoint', function (greeting) {
+        stompClient.subscribe('/topic/TOPICOXX', function (data) {
            
             
         });
@@ -21,9 +21,6 @@ function disconnect() {
     console.log("Disconnected");
 }
 
-function sendPoint(x,y) {
-    stompClient.send("/app/newpoint", {}, JSON.stringify({x:10,y:10}));
-}
 
 $(document).ready(
         function () {
