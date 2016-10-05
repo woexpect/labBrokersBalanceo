@@ -1,9 +1,9 @@
-#### Escuela Colombiana de Ingeniería
-#### Arquitecturas de Software - ARSW
-#### Laboratorio - Broker de Mensajes STOMP con WebSockets + HTML5 Canvas.
+### Escuela Colombiana de Ingeniería
+### Arquitecturas de Software - ARSW
+### Laboratorio - Broker de Mensajes STOMP con WebSockets + HTML5 Canvas.
 
 
-Este ejercicio se basa en la documentación oficial de SprinbBoot, para el [manejo de WebSockets con STOMP](https://spring.io/guides/gs/messaging-stomp-websocket/)
+Este ejercicio se basa en la documentación oficial de SprinbBoot, para el [manejo de WebSockets con STOMP](https://spring.io/guides/gs/messaging-stomp-websocket/).
 
 En este repositorio se encuentra una aplicación SpringBoot que está configurado como Broker de mensajes, de forma similar a lo mostrado en la siguiente figura:
 
