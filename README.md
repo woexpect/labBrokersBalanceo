@@ -96,3 +96,7 @@ Haga commit de lo realizado, y agregue un TAG para demarcar la versión final:
 ```bash	
 git tag -a v0.3 -m "Final"	
 ```
+## Opcional
+
+Puede ajustar su cliente para que, además de eventos de mouse, [detecte eventos de pantallas táctiles](http://www.homeandlearn.co.uk/JS/html5_canvas_touch_events.html), de manera que los clientes móviles también puedan interactuar con la aplicación!.
+
