@@ -7,8 +7,12 @@ function connect() {
         console.log('Connected: ' + frame);
         
         stompClient.subscribe('/topic/newpoint', function (data) {
-           alert("Evento recibido ---> " + data);
-           var object = JSON.parse(data.body);
+            var object = JSON.parse(data.body);
+            var canvas = document.getElementById('pizarra');
+            var context = canvas.getContext('2d');
+            context.beginPath();
+            context.arc(object.x, object.y,1,0,2*Math.PI);
+            context.stroke();
         });
     });
 }
@@ -27,12 +31,26 @@ $(document).ready(
             connect();
             console.info('connecting to websockets');
 
+            function getMousePos(canvas, evt) {        
+            var rect = canvas.getBoundingClientRect();
+            return {
+                x: evt.clientX - rect.left,
+                y: evt.clientY - rect.top
+            };
+            }
+
+            var canvas = document.getElementById('pizarra');
+            var context = canvas.getContext('2d');
+
+            canvas.addEventListener('mousedown', function(evt) {
+            var mousePos = getMousePos(canvas, evt);
+            submit(canvas, mousePos.x, mousePos.y, context);
+        }, false);
+
         }
 );
 
 
-function submit(){
-    var valX = document.getElementById("valueX").value
-    var valY = document.getElementById("valueY").value
+function submit(canvas, valX, valY, context){
     stompClient.send("/topic/newpoint", {}, JSON.stringify({x:valX,y:valY}));
 }
