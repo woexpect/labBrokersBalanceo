@@ -6,9 +6,9 @@ function connect() {
     stompClient.connect({}, function (frame) {
         console.log('Connected: ' + frame);
         
-        stompClient.subscribe('/topic/TOPICOXX', function (data) {
-           
-            
+        stompClient.subscribe('/topic/newpoint', function (data) {
+           alert("Evento recibido ---> " + data);
+           var object = JSON.parse(data.body);
         });
     });
 }
@@ -29,3 +29,10 @@ $(document).ready(
 
         }
 );
+
+
+function submit(){
+    var valX = document.getElementById("valueX").value
+    var valY = document.getElementById("valueY").value
+    stompClient.send("/topic/newpoint", {}, JSON.stringify({x:valX,y:valY}));
+}
