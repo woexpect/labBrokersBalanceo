@@ -14,6 +14,21 @@ function connect() {
             context.arc(object.x, object.y,1,0,2*Math.PI);
             context.stroke();
         });
+
+        stompClient.subscribe('/topic/newpolygon', function (data) {
+            var object = JSON.parse(data.body);
+            var canvas = document.getElementById('pizarra');
+            var context = canvas.getContext('2d');
+            context.beginPath();
+            context.fillStyle = '#f00';
+            context.moveTo(object[0].x,object[0].y);
+            context.lineTo(object[1].x,object[1].y);
+            context.lineTo(object[2].x,object[2].y);
+            context.lineTo(object[3].x,object[3].y);
+            context.closePath();
+            context.fill();
+            context.stroke();
+        });
     });
 }
 
@@ -52,5 +67,5 @@ $(document).ready(
 
 
 function submit(canvas, valX, valY, context){
-    stompClient.send("/topic/newpoint", {}, JSON.stringify({x:valX,y:valY}));
+    stompClient.send("/app/newpoint", {}, JSON.stringify({x:valX,y:valY}));
 }
