@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 public class STOMPMessagesHandler {
 
     Point[] pointArray = new Point[4];
-    int points = 0;
+    private static int points = 0;
     @Autowired
     SimpMessagingTemplate msgt;
 
@@ -28,13 +28,15 @@ public class STOMPMessagesHandler {
         System.out.println("Nuevo punto recibido en el servidor!:"+pt);
         msgt.convertAndSend("/topic/newpoint", pt);
         
-        if(points < 3){
-            pointArray[points] = pt;
-            points += 1;
-        }else{
-            pointArray[points] = pt;
-            points = 0;
-            msgt.convertAndSend("/topic/newpolygon", pointArray);
+        synchronized(pointArray){
+            if(points < 3){
+                pointArray[points] = pt;
+                points += 1;
+            }else{
+                pointArray[points] = pt;
+                points = 0;
+                msgt.convertAndSend("/topic/newpolygon", pointArray);
+            }   
         }
     }
     //newpolygon
