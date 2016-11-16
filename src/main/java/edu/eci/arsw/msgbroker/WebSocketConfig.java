@@ -33,7 +33,7 @@ public class WebSocketConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry config) {
-        config.enableStompBrokerRelay("/topic/").setRelayHost("192.168.56.20").setRelayPort(8161);
+        config.enableStompBrokerRelay("/topic/").setRelayHost("192.168.56.20").setRelayPort(61613);
         config.setApplicationDestinationPrefixes("/app");
         System.out.println("Mensaje de captacion");
     }
